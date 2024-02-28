@@ -24,12 +24,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_26_150608) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "usuarios_pix", id: false, force: :cascade do |t|
-    t.integer "id_usuario"
-    t.string "chave_pix", limit: 255
-    t.string "tipo_chave", limit: 255
-    t.float "saldo"
-    t.boolean "chave_ativa"
-  end
-
 end

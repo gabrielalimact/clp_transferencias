@@ -27,7 +27,16 @@ module Api
           usuario_destino.update(saldo: usuario_destino.saldo + valor_transferencia)
         end
 
-        render json: { message: 'Transferência realizada com sucesso' }, status: :ok
+        render json: {
+                      status: 'success',
+                      message: 'Transferência realizada com sucesso',
+                      transferencia: {
+                        valor: valor_transferencia,
+                        id_origem: id_origem,
+                        id_destino: id_destino,
+                        data: Time.now
+                      }
+                    }, status: :ok
       rescue ActiveRecord::RecordNotFound
         render json: { error: 'Usuário não encontrado' }, status: :not_found
       end
