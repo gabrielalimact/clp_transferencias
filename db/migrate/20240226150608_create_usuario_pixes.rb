@@ -1,6 +1,8 @@
 class CreateUsuarioPixes < ActiveRecord::Migration[7.1]
   def change
     create_table :usuario_pixes do |t|
+      t.integer :conta
+      t.integer :agencia
       t.integer :id_usuario
       t.string :chave_pix
       t.string :tipo_chave
