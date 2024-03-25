@@ -1,0 +1,342 @@
+{
+	"info": {
+		"_postman_id": "b46e3cc0-9059-44e9-a6d0-f5ea5465d7a3",
+		"name": "CLP Transferências",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26358864"
+	},
+	"item": [
+		{
+			"name": "Usuários",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/usuarios",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuário",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/usuarios/:id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "36"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Histórico",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_usuario\": 69\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/usuarios/:usuario_id/historico",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						":usuario_id",
+						"historico"
+					],
+					"variable": [
+						{
+							"key": "usuario_id",
+							"value": "55"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transferência PIX",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"chave_pix_origem\": \"andrea@price.example\",\r\n    \"chave_pix_destino\": \"055.578.898-92\",\r\n    \"valor\": 20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/usuarios/:usuario_id/transferencia_pix",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						":usuario_id",
+						"transferencia_pix"
+					],
+					"variable": [
+						{
+							"key": "usuario_id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Histórico PIX",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_usuario\": 69\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/usuarios/:usuario_id/historico_pix",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						":usuario_id",
+						"historico_pix"
+					],
+					"variable": [
+						{
+							"key": "usuario_id",
+							"value": "69"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transferência Interna",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"destino_agencia\": 6318,\r\n    \"destino_conta\": 884451,\r\n    \"valor_transferencia\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/usuarios/:usuario_id/transferencia_interna",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						":usuario_id",
+						"transferencia_interna"
+					],
+					"variable": [
+						{
+							"key": "usuario_id",
+							"value": "69"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Histórico Transferência Interna",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/usuarios/:usuario_id/historico_interno",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						":usuario_id",
+						"historico_interno"
+					],
+					"variable": [
+						{
+							"key": "usuario_id",
+							"value": "40"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transferência Externa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"destino_banco\": 237,\r\n    \"destino_agencia\": 7124,\r\n    \"destino_conta\": 696448,\r\n    \"valor_transferencia\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/usuarios/:usuario_id/transferencia_externa",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						":usuario_id",
+						"transferencia_externa"
+					],
+					"variable": [
+						{
+							"key": "usuario_id",
+							"value": "69"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Histórico Transferência Externa",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/usuarios/:usuario_id/historico_externo",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios",
+						":usuario_id",
+						"historico_externo"
+					],
+					"variable": [
+						{
+							"key": "usuario_id",
+							"value": "69"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:3000/api/v1",
+			"type": "string"
+		}
+	]
+}
