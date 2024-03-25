@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OXETech Users</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Usuários</h1>
+    
+    <div id="usuarios"></div>
+
+    <script>
+        $(document).ready(function() {
+            // Função para carregar os usuários Pix
+            function carregarUsuarios() {
+                $.ajax({
+                    url: '/api/v1/usuarios', // Rota da API para listar usuários
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        // Limpa o conteúdo anterior
+                        $('#usuarios').empty();
+
+                        // Verifica se há dados de usuários
+                        if (response.data && response.data.length > 0) {
+                            // Itera sobre os usuários e os adiciona à div #usuarios
+                            <!-- Ordenar usuários por banco -->
+                            response.data.sort(function(a, b) {
+                                return a.banco.localeCompare(b.banco);
+                            });
+                            response.data.forEach(function(usuario) {
+                                $('#usuarios').append('<p>ID: ' + usuario.id + '&ensp;&ensp;|&ensp;&ensp;ID_usuario: ' + usuario.id_usuario + '&ensp;&ensp;|&ensp;&ensp;Banco: ' + usuario.banco + '&ensp;&ensp;|&ensp;&ensp;Agencia: ' + usuario.agencia + '&ensp;&ensp;|&ensp;&ensp;Conta: ' + usuario.conta + '&ensp;&ensp;|&ensp;&ensp;Saldo: ' + usuario.saldo + '&ensp;&ensp;|&ensp;&ensp;Chave_PIX: ' + usuario.chave_pix + '</p>');
+                            });
+                        } else {
+                            $('#usuarios').append('<p>Nenhum usuário encontrado.</p>');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Erro ao carregar usuários:', error);
+                        $('#usuarios').append('<p>Erro ao carregar usuários.</p>');
+                    }
+                });
+            }
+
+            // Chama a função para carregar os usuários quando a página é carregada
+            carregarUsuarios();
+        });
+    </script>
+</body>
+</html>

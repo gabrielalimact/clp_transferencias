@@ -1,6 +1,6 @@
 module Api
   module V1
-    class TransferenciasController < ApplicationController
+    class TransferenciaPixController < ApplicationController
       rescue_from ActiveRecord::RecordNotFound, with: :not_found_error
       rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity_error
 
@@ -22,12 +22,12 @@ module Api
 
       def historico
         id_usuario = params[:id_usuario]
-        usuario = UsuarioPix.find_by(id_usuario: id_usuario)
+        usuario = Usuario.find_by(id_usuario: id_usuario)
 
         if usuario.nil?
           render json: { error: 'Usuário não encontrado' }, status: :not_found
         else
-          historico = HistoricoTransferencias.where(id_usuario: id_usuario)
+          historico = HistoricoTransferencias.where(id_usuario: id_usuario, tipo_transferencia: 'pix')
           if not historico.nil?
             render json: historico, status: :ok
           else
@@ -64,7 +64,7 @@ module Api
       def render_success_response
         render json: {
           status: 'success',
-          message: 'Transferência realizada com sucesso',
+          message: 'PIX realizada com sucesso',
           transferencia: {
             valor: valor_transferencia,
             chave_pix_origem: chave_pix_origem,
@@ -95,11 +95,11 @@ module Api
       end
 
       def usuario_origem
-        @usuario_origem ||= UsuarioPix.find_by!(chave_pix: chave_pix_origem)
+        @usuario_origem ||= Usuario.find_by!(chave_pix: chave_pix_origem)
       end
 
       def usuario_destino
-        @usuario_destino ||= UsuarioPix.find_by!(chave_pix: chave_pix_destino)
+        @usuario_destino ||= Usuario.find_by!(chave_pix: chave_pix_destino)
       end
     end
   end

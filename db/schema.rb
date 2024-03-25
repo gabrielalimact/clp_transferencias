@@ -24,7 +24,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_19_135301) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "usuario_pixes", force: :cascade do |t|
+  create_table "usuarios", force: :cascade do |t|
     t.integer "id_usuario"
     t.string "chave_pix"
     t.string "tipo_chave"
@@ -34,6 +34,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_19_135301) do
     t.datetime "updated_at", null: false
     t.string "conta"
     t.string "agencia"
+    t.string "banco"
   end
 
 end

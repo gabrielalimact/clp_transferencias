@@ -1,27 +1,22 @@
 module Api
   module V1
-    class TransferenciaInternaController < ApplicationController
+    class TransferenciaExternaController < ApplicationController
       def create
         validate_parameters
-
         user_id = params[:usuario_id]
         destino_conta = params[:destino_conta]
         destino_agencia = params[:destino_agencia]
+        destino_banco = params[:destino_banco]
         valor_transferencia = params[:valor_transferencia]
 
         usuario_atual = Usuario.find_by(id_usuario: user_id)
-        destinatario = Usuario.find_by(conta: destino_conta, agencia: destino_agencia)
+        destinatario = Usuario.find_by(conta: destino_conta, agencia: destino_agencia, banco: destino_banco)
 
         if usuario_atual.nil?
           render json: { error: "Usuário não encontrado" }, status: :not_found
           return
         elsif destinatario.nil?
           render json: { error: "Destinatário não encontrado" }, status: :not_found
-          return
-        end
-
-        if usuario_atual.banco != destinatario.banco
-          render json: { error: "Transferência não permitida entre bancos diferentes" }, status: :unprocessable_entity
           return
         end
 
@@ -43,7 +38,6 @@ module Api
 
         render_success_response(valor_transferencia.to_f, usuario_atual, destinatario)
       end
-
       
       def historico
         user_id = params[:usuario_id]
@@ -52,7 +46,7 @@ module Api
         if usuario.nil?
           render json: { error: 'Usuário não encontrado' }, status: :not_found
         else
-          historico = HistoricoTransferencias.where(id_usuario: user_id, tipo_transferencia: 'interna')
+          historico = HistoricoTransferencias.where(id_usuario: user_id, tipo_transferencia: 'externa')
           if not historico.nil?
             render json: historico, status: :ok
           else
@@ -65,7 +59,7 @@ module Api
       private
 
       def validate_parameters
-        raise ArgumentError, 'Parâmetros ausentes' unless params[:destino_conta] && params[:destino_agencia] && params[:valor_transferencia]
+        raise ArgumentError, 'Parâmetros ausentes' unless params[:destino_conta] && params[:destino_agencia] && params[:valor_transferencia] && params[:destino_banco]
       end
 
       def create_transfer_history(id_usuario, origem, destino, valor)
@@ -73,7 +67,7 @@ module Api
           id_usuario: id_usuario,
           origem_usuario: origem,
           destino_usuario: destino,
-          tipo_transferencia: 'interna',
+          tipo_transferencia: 'externa',
           valor_transferencia: valor
         )
       end
@@ -81,7 +75,7 @@ module Api
       def render_success_response(valor_transferencia, usuario_atual, destinatario)
         render json: {
           status: 'success',
-          message: 'Transferência Interna realizada com sucesso',
+          message: 'Transferência Externa realizada com sucesso',
           transferencia: {
             valor: valor_transferencia,
             origem: usuario_atual,

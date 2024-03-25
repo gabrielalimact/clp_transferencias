@@ -1,4 +1,5 @@
-class UsuarioPix < ApplicationRecord
+class Usuario < ApplicationRecord
+  validates :banco, presence: true
   validates :conta, presence: true
   validates :agencia, presence: true
   validates :chave_pix, presence: true

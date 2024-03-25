@@ -1,6 +1,6 @@
-class CreateUsuarioPixes < ActiveRecord::Migration[7.1]
+class CreateUsuarios < ActiveRecord::Migration[7.1]
   def change
-    create_table :usuario_pixes do |t|
+    create_table :usuario do |t|
       t.integer :conta
       t.integer :agencia
       t.integer :id_usuario
