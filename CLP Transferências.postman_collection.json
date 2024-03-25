@@ -103,7 +103,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"chave_pix_origem\": \"andrea@price.example\",\r\n    \"chave_pix_destino\": \"055.578.898-92\",\r\n    \"valor\": 20\r\n}",
+					"raw": "{\r\n    \"chave_pix_origem\": \"andrea@price.example\",\r\n    \"chave_pix_destino\": \"055.578.898-92\",\r\n    \"valor\": 10\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -245,7 +245,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"destino_banco\": 237,\r\n    \"destino_agencia\": 7124,\r\n    \"destino_conta\": 696448,\r\n    \"valor_transferencia\": 10\r\n}",
+					"raw": "{\r\n    \"destino_banco\": \"001\",\r\n    \"destino_agencia\": 2093,\r\n    \"destino_conta\": 971641,\r\n    \"valor_transferencia\": 10\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -265,7 +265,7 @@
 					"variable": [
 						{
 							"key": "usuario_id",
-							"value": "69"
+							"value": "88"
 						}
 					]
 				}

@@ -47,8 +47,8 @@ module Api
       end
 
       def transfer_amount
-        usuario_origem.update!(saldo: usuario_origem.saldo - valor_transferencia)
-        usuario_destino.update!(saldo: usuario_destino.saldo + valor_transferencia)
+        usuario_origem.update!(saldo: (usuario_origem.saldo - valor_transferencia).to_f)
+        usuario_destino.update!(saldo: (usuario_destino.saldo + valor_transferencia).to_f)
       end
 
       def create_transfer_history(id_usuario, origem, destino, valor)

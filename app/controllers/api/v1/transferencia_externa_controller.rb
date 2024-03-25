@@ -32,6 +32,8 @@ module Api
         end
 
         ActiveRecord::Base.transaction do
+          usuario_atual.update!(saldo: usuario_atual.saldo - valor_transferencia)
+          destinatario.update!(saldo: destinatario.saldo + valor_transferencia)
           create_transfer_history(usuario_atual.id_usuario, usuario_atual.conta, destinatario.conta, -valor_transferencia.to_f)
           create_transfer_history(destinatario.id_usuario, destinatario.conta, destinatario.conta, valor_transferencia.to_f)
         end
